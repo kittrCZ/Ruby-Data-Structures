@@ -1,0 +1,47 @@
+My solution of task:
+
+CONTEXT
+
+The arrays and linked lists are the basic data structures. We need to understand them as well as operations on them. Some other structures, like for example stack or queue, can be implemented using these basic structures.
+TASKS
+
+1. Array
+
+Look at first at the implementation of BooleanArray from the third seminar and provided test. These source code, you can inspire yourself to solve the remaining part of the task.
+2. List
+
+Create an implementation of class SinglyLinkedList, which is similar to LinkedList class from the fourth seminar, which implements a one-way linked list. Please check the attached skeleton of this class (especially a list of methods that are need to be implemented) and also a test that will help you to verify the correctness of your code.
+3. Stack
+
+Implement the SinglyListStack and ArrayStack classes. Both of them represent a stack (so they implement the push and pop methods). The former of the classes uses the SinglyLinkedList, class for its implementation, the other uses class BooleanArray.
+In both cases, do not forget the need to address stack underflow (call operation pop on an empty tank), in such a situation to throw the exception defined by class StackEmptyException. For BooleanArrayStack is also a need to address stack overflow (call operation push for full stack), in such a situation throw the exception StackFullException.
+For both classes create appropriate unit tests to verify the correctness of their implementation.
+4. Queue
+
+Create implementation of classes SinglyListQueue and BooleanArrayQueue. Both will represent the queue (i.e. they implement the queue and dequeue methods).
+The first of these uses class SinglyLinkedList for implementation, here again there is no need to address the case of full queue (we can always add a new element). The second class uses BooleanArray, but be careful, the implementation has to use only the methods [] and [] = through the maintenance of the two indices indicating the beginning and the end of the queue as described in lectures (in other words, the implementation should not use methods such as << or delete_at). If the stack overflow for BooleanArrayQueue occurs an exception StackFullException should be thrown. In both implementations invoke the exception in the case of StackEmptyException when operation dequeue is performed on an empty queue.
+For both classes create appropriate unit tests to verify the correctness of their implementation.
+General notes
+
+This is an individual task. Obvious duplication will not be tolerated.
+For correct function of the tests, the each method is needed on BooleanArray and SinglyLinkedList classes. The yield  method is necessary for the implementation. It was an optional piece of knowledge. So there is an example implementation as a guide:
+class BooleanArray
+  # iterate(callback)
+  def each
+    @used_length.times { |i|
+      yield self[i]
+    }
+  end
+end
+class LinkedList
+  # iterate(callback)
+  def each
+    if @length > 0
+      item = @head
+      begin
+        yield item.object
+        item = item.next
+      end until item.nil?
+    end
+  end
+end
